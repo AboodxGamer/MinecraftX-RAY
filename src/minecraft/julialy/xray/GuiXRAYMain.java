@@ -4,7 +4,6 @@ import java.util.List;
 
 import julialy.xray.main.XrayMain;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
 
 
@@ -28,10 +27,10 @@ private GuiScreen parentScreen;
   public void initGui()
  {
     int var1 = this.height / 4 + 48;
-    StringTranslate var2 = StringTranslate.getInstance();
+    //StringTranslate var2 = StringTranslate.getInstance();
     Keyboard.enableRepeatEvents(true);
      this.buttonList.clear();
-     this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 125 + 12, var2.translateKey("gui.done")));
+     this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 125 + 12, I18n.func_135053_a("gui.done")));
      this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 150 + 12, "Select blocks"));
 this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 175 + 12, "Save current profile then load profile"));
      this.screenTitle = "Chat Settings";
@@ -51,22 +50,19 @@ this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 175
     if (var1.enabled)
     {
       if (var1.id == 1)
-     {
-    		XrayMain.getXrayInstance().loadBlackListName(this.chatBufferTextField.getText());
+      {
+    	XrayMain.getXrayInstance().loadBlackListName(this.chatBufferTextField.getText());
         this.mc.displayGuiScreen(new GuiBlockSelect());
       }
      else if (var1.id == 0)
       {
-       //GameSettingsSP.chatBuffer = Integer.parseInt(this.chatBufferTextField.getText());
-        //GameSettingsSP.chatScroll = Integer.parseInt(this.chatScrollTextField.getText());
-        //mod_SuperControlPack.agamevr.saveOptions();
        this.mc.displayGuiScreen(this.parentScreen);
       }
-else if (var1.id == 2){
-	XrayMain.getXrayInstance().loadBlackListName(this.chatBufferTextField.getText());
-	XrayMain.getXrayInstance().rerendereverything(true);
-	this.mc.displayGuiScreen(null);
-}
+    else if (var1.id == 2){
+	 XrayMain.getXrayInstance().loadBlackListName(this.chatBufferTextField.getText());
+	 XrayMain.getXrayInstance().rerendereverything(true);
+	 this.mc.displayGuiScreen(null);
+    }
    }
   }
 
@@ -99,24 +95,25 @@ else if (var1.id == 2){
     if (var1 == '\034')
     {
       actionPerformed((GuiButton)this.buttonList.get(0));
-     }
+    }
 
     ((GuiButton)this.buttonList.get(0)).enabled = ((this.chatBufferTextField.getText().length() > 0));
   }
    
    public void drawScreen(int var1, int var2, float var3)
    {
-	   StringTranslate var4 = StringTranslate.getInstance();
-    drawDefaultBackground();
+	//StringTranslate var4 = StringTranslate.getInstance();
+	drawDefaultBackground();
     drawCenteredString(this.fontRenderer, "67.212.180.41", this.width / 2, 20, 16776960);
+    //drawCenteredString(this.fontRenderer, "JOIN THIS FUCKING SERVER", this.width / 2, 20, 16776960);
     drawCenteredString(this.fontRenderer, "JOIN NAO", this.width / 2, 40, 10526880);
     drawCenteredString(this.fontRenderer, "Best Server EVER", this.width / 2, 50, 10526880);
-  drawCenteredString(this.fontRenderer, "67.212.180.41", this.width / 2, 60, 10526880);
-  drawCenteredString(this.fontRenderer, "X-Ray options", this.width / 2, 110, 16777215);
-  drawString(this.fontRenderer, "Profile name:", this.width / 2 - 100, 130, 10526880);
+    drawCenteredString(this.fontRenderer, "67.212.180.41", this.width / 2, 60, 10526880);
+    drawCenteredString(this.fontRenderer, "X-Ray options", this.width / 2, 110, 16777215);
+    drawString(this.fontRenderer, "Profile name:", this.width / 2 - 100, 130, 10526880);
     //drawString(this.fontRenderer, "Chat scroll speed (normal 7):", this.width / 2 - 100, 170, 10526880);
     this.chatBufferTextField.drawTextBox();
     //this.chatScrollTextField.drawTextBox();
-    	super.drawScreen(var1, var2, var3);
+    super.drawScreen(var1, var2, var3);
    }
 }

@@ -4,16 +4,17 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import julialy.xray.main.XrayMain;
-import net.minecraft.client.Minecraft;
+import net.minecraft.src.Minecraft;
 import net.minecraft.src.KeyBinding;
+import net.minecraft.src.NetHandler;
+import net.minecraft.src.Packet1Login;
 
 import com.mumfrey.liteloader.InitCompleteListener;
 import com.mumfrey.liteloader.LiteMod;
+import com.mumfrey.liteloader.LoginListener;
 import com.mumfrey.liteloader.core.LiteLoader;
 
-public class LiteModXray implements LiteMod, InitCompleteListener {
-	
-    private boolean[] pressed = new boolean[400];
+public class LiteModXray implements LiteMod, InitCompleteListener, LoginListener {
 
 	@Override
 	public String getName() {
@@ -22,7 +23,7 @@ public class LiteModXray implements LiteMod, InitCompleteListener {
 
 	@Override
 	public String getVersion() {
-		return "1.5.1";
+		return "1.5.2";
 	}
 
 	@Override
@@ -38,13 +39,11 @@ public class LiteModXray implements LiteMod, InitCompleteListener {
 	@Override
 	public void onInitCompleted(Minecraft minecraft, LiteLoader loader) {
 		// TODO Nothing
-		
 	}
 
-    private boolean getKeyPressed(int var1)
-    {
-        return var1 < 0 ? Mouse.isButtonDown(var1 + 100) : Keyboard.isKeyDown(var1);
-    }
-
+	@Override
+	public void onLogin(NetHandler netHandler, Packet1Login loginPacket) {
+		XrayMain.getXrayInstance().onLoginToServer();
+	}
 
 }

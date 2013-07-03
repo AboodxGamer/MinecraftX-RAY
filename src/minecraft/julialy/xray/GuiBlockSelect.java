@@ -5,7 +5,6 @@ import java.util.List;
 
 import julialy.xray.main.XrayMain;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
 
 
@@ -149,6 +148,7 @@ public class GuiBlockSelect extends GuiScreen
      */
     public void drawScreen(int var1, int var2, float var3)
     {
+    	drawDefaultBackground();
         int var4 = this.width / 2 + 100;
         int var5 = this.width / 2 - 100;
         int var6 = this.height / 3;
